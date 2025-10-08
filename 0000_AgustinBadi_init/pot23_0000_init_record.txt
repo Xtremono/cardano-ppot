@@ -1,0 +1,21 @@
+Ceremony Initialization Record
+============================
+
+File: pot23_0000.ptau
+Size: 4831838464 bytes (4608.00 MB)
+Ceremony Power: 23
+Elliptic Curve: bls12-381
+Constraints Supported: 8388608
+Generated: 2025-10-08T17:03:44.200Z
+
+Initialization Log:
+==================
+[32;22m[INFO]  [39;1msnarkJS[0m: First Contribution Hash:
+		921855d7 d8702daa 81a6ddff 90e62fef
+		81866656 6aa2bc8b 4171bc05 e2d09302
+		b6de194e 141138db 4dc47c54 e34c1bad
+		9457b951 b70b8fae 6b2fc681 a45513b5
+
+
+This record contains the output from the snarkjs new command
+including the initial challenge hash for verification purposes.
