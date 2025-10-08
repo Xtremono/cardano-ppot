@@ -1,0 +1,44 @@
+Contribution Record
+==================
+
+File: pot23_0001.ptau
+Size: 4831840594 bytes (4608.00 MB)
+Ceremony Power: 23
+Contribution Index: 1
+Previous File: pot23_0000.ptau
+Generated: 2025-10-08T21:17:20.747Z
+Contributor: Agustín Salinas
+
+Contribution Log:
+================
+[32;22m[INFO]  [39;1msnarkJS[0m: Powers Of tau file OK!
+[32;22m[INFO]  [39;1msnarkJS[0m: Next challenge hash: 
+		274314bb 2a854f2c 8cb464c6 0c229978
+		c7394d90 bbf7c3e5 7e8afaaf 888f1c3c
+		b37446ed 0c0c756a dd3b8d95 a71a9780
+		1f34d9f4 43516dcd 31b4abd5 45772f83
+[32;22m[INFO]  [39;1msnarkJS[0m: -----------------------------------------------------
+[32;22m[INFO]  [39;1msnarkJS[0m: Contribution #1: Agustín Salinas
+[32;22m[INFO]  [39;1msnarkJS[0m: Next Challenge: 
+		274314bb 2a854f2c 8cb464c6 0c229978
+		c7394d90 bbf7c3e5 7e8afaaf 888f1c3c
+		b37446ed 0c0c756a dd3b8d95 a71a9780
+		1f34d9f4 43516dcd 31b4abd5 45772f83
+[32;22m[INFO]  [39;1msnarkJS[0m: Response Hash:
+		9397fb1e 1cedb0a5 ec983860 997bfd91
+		dbd18fe1 eb399643 186a022f edaf58d2
+		7bd55df7 a6eb0edb 2f429f88 54b4b948
+		46c5e835 e64d537a 182b4947 1bc1ae5c
+[32;22m[INFO]  [39;1msnarkJS[0m: Response Hash:
+		921855d7 d8702daa 81a6ddff 90e62fef
+		81866656 6aa2bc8b 4171bc05 e2d09302
+		b6de194e 141138db 4dc47c54 e34c1bad
+		9457b951 b70b8fae 6b2fc681 a45513b5
+[32;22m[INFO]  [39;1msnarkJS[0m: -----------------------------------------------------
+[33;22m[WARN]  [39;1msnarkJS[0m: this file does not contain phase2 precalculated values. Please run: 
+   snarkjs "powersoftau preparephase2" to prepare this file to be used in the phase2 ceremony.
+[32;22m[INFO]  [39;1msnarkJS[0m: Powers of Tau Ok!
+
+
+This record contains the output from the snarkjs contribution command
+including cryptographic hashes for verification purposes.
