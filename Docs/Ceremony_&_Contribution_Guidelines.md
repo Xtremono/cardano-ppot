@@ -273,7 +273,17 @@ This command will automatically:
 
 3. **Share on Social Media**: Click the generated Twitter/X link to share your participation with the Cardano community
 
-**Your contribution is NOT complete until you create the pull request!**
+**Your contribution is NOT complete until youe pull request is merged!**
+
+### Request the verification
+
+Finally, as a last step, ensure that all previous steps have been accomplished succesfully, then you need to request the verification of your contribution by running this command:
+
+```bash
+brebaje-cli vm verify input/ceremony-urls-pot23_<previosu_contribution_index>.json 
+```
+
+Use the json file that the coordinator sent you as an argument.
 
 ### Manual Step-by-Step Process
 
