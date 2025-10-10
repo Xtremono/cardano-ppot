@@ -216,7 +216,7 @@ Replace the placeholders with your actual values:
 
 ### Receive Ceremony URLs from Coordinator
 
-The ceremony coordinator will provide you with a JSON file containing the download and upload URLs. This file will look like:
+At this stage, the ceremony coordinator will provide you with a JSON file containing the download and upload URLs. This file will look like:
 
 ```json
 {
@@ -239,7 +239,15 @@ The ceremony coordinator will provide you with a JSON file containing the downlo
 
 ## Contributing to a Ceremony
 
-Once you have the JSON file from the coordinator, you can contribute in two ways:
+### 
+
+Since we have configured the enviroment variables globally, you can make your contribution in any folder path you like, however make sure to create an `input/` folder inside:
+
+```bash
+mkdir input
+```
+
+Then, place json file inside `input/`. Once you have the JSON file from the coordinator placed correctly, you can contribute in two ways:
 
 ### Automatic Contribution (Recommended)
 
