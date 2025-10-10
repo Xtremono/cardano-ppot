@@ -235,7 +235,7 @@ At this stage, the ceremony coordinator will provide you with a JSON file contai
 }
 ```
 
-**Place this JSON file in the `input/` folder** or keep it accessible with a known path.
+**Keep this file accessible with a known path, we'll use it in a second (see instructions below)**
 
 ## Contributing to a Ceremony
 
