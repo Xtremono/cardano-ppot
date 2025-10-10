@@ -141,7 +141,7 @@ brebaje-cli --help
 
 Before creating tokens, you must fork the official ceremony repository to your GitHub account:
 
-1. Go to the official ceremony repository (URL will be provided by coordinators)
+1. Go to the [official ceremony repository](https://github.com/p0tion-tools/cardano-ppot)
 2. Click the **"Fork"** button in the top-right corner
 3. Select your GitHub account as the destination
 4. Keep the repository **public** (required for token access)
@@ -189,6 +189,9 @@ To submit contribution records to the ceremony repository, you need a **GitHub f
 Configure all required settings using the config commands:
 
 ```bash
+# Initialize your configuration
+brebaje-cli config new
+
 # Set your full name for contribution records
 brebaje-cli config name "Your Full Name" # (Make sure to do it with a string "" )
 
