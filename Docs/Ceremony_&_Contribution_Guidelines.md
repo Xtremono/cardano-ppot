@@ -101,7 +101,7 @@ npm install -g snarkjs@latest
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/NicoSerranoP/brebaje.git
+git clone https://github.com/p0tion-tools/brebaje.git
 cd brebaje
 ```
 
@@ -149,7 +149,7 @@ Before creating tokens, you must fork the official ceremony repository to your G
 2. Click the **"Fork"** button in the top-right corner
 3. Select your GitHub account as the destination
 4. Keep the repository **public** (required for token access)
-5. Note your fork URL: `https://github.com/YOUR-USERNAME/ceremony-repo-name`
+5. Note your fork URL: `https://github.com/YOUR-USERNAME/cardano-ppot`
 
 ![Repository Fork](./images/fork_repo.png)
 
@@ -205,16 +205,16 @@ Configure all required settings using the config commands:
 brebaje-cli config new
 
 # Set your full name for contribution records
-brebaje-cli config name "Your Full Name" # (Make sure to do it with a string "" )
+brebaje-cli config name <your Full Name> # (Make sure to do it with a string "" e.g "John Snow")
 
 # Set your forked ceremony repository URL
-brebaje-cli config ceremony-repo https://github.com/YOUR-USERNAME/ceremony-repo-name
+brebaje-cli config ceremony-repo https://github.com/<YOUR-USERNAME>/cardano-ppot
 
 # Configure GitHub classic token for gist sharing
-brebaje-cli config gh-token ghp_your_classic_token_here
+brebaje-cli config gh-token <ghp_your_classic_token_here> 
 
 # Configure fine-grained token for repository operations
-brebaje-cli config gh-token-scoped github_pat_your_fine_grained_token_here
+brebaje-cli config gh-token-scoped <gh_your_fine_grained_token_here>
 ```
 
 > **📝 Note for existing users**: If you previously used `setup` commands, your local configuration will continue to work. To migrate to the new global configuration system, run: `brebaje-cli config migrate`
