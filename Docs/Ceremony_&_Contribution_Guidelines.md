@@ -198,9 +198,9 @@ Here you can see the permissions needed:
 
 >⚠️ **Important**: Make sure you copied both tokens somewhere before continue (we'll use them later)
 
-### Step 3: Configure CLI
+## Configuration of Brebaje-cli
 
-# Configuration Setup
+### Step 3: Configure CLI
 
 Configure all required settings using the config commands.
 
@@ -279,9 +279,7 @@ At this stage, the ceremony coordinator will provide you with a JSON file contai
 
 **Keep this file accessible with a known path, we'll use it in a second (see instructions below)**
 
-## Contributing to a Ceremony
-
-### Step 6: Create the input directory
+### Step 5: Create the input directory
 
 Since we have configured the enviroment variables globally, you can make your contribution in any folder path you like, however make sure to create an `input/` folder inside:
 
@@ -289,9 +287,13 @@ Since we have configured the enviroment variables globally, you can make your co
 mkdir input
 ```
 
-Then, place json file inside `input/`. Once you have the JSON file from the coordinator placed correctly, you can contribute in two ways:
+Then, place json file inside `input/`.
 
-### Step 7.a: Automatic Contribution (Recommended)
+## Contributing to a Ceremony
+
+ Once you have the JSON file from the coordinator placed correctly, you can contribute in two ways:
+
+### Step 6.a: Automatic Contribution (Recommended)
 
 If you placed the JSON file in the `input/` folder:
 
@@ -313,7 +315,7 @@ This command will automatically:
 4. 📋 Post your contribution record to GitHub Gist and ceremony repository
 5. 🔗 Generate pull request links for official submission
 
-### Step 8: Complete Your Contribution Submission
+### Step 7: Complete Your Contribution Submission
 
 **CRITICAL**: After the auto-contribute command completes, you MUST open the generated links to finalize your contribution:
 
@@ -328,7 +330,7 @@ This command will automatically:
 
 **Your contribution is NOT complete until youe pull request is merged!**
 
-### Step 9 (Final) Request the verification
+### Step 8 (Final) Request the verification
 
 Finally, as a last step, ensure that all previous steps have been accomplished succesfully, then you need to request the verification of your contribution by running this command:
 
@@ -338,7 +340,7 @@ brebaje-cli vm verify input/ceremony-urls-pot23_<previosu_contribution_index>.js
 
 Use the json file that the coordinator sent you as an argument.
 
-### Step 7.b: Manual Step-by-Step Process
+### Step 6.b: Manual Step-by-Step Process
 
 1. **Download challenge file:**
 
