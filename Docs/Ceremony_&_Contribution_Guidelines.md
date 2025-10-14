@@ -214,7 +214,7 @@ Replace the placeholders with your actual values:
 - `ghp_your_classic_token_here`: Your GitHub classic token
 - `github_pat_your_fine_grained_token_here`: Your GitHub fine-grained token
 
-### Receive Ceremony URLs from Coordinator
+### Step 4: Receive Ceremony URLs from Coordinator
 
 At this stage, the ceremony coordinator will provide you with a JSON file containing the download and upload URLs. This file will look like:
 
@@ -239,7 +239,7 @@ At this stage, the ceremony coordinator will provide you with a JSON file contai
 
 ## Contributing to a Ceremony
 
-### 
+### Step 6: Create the input directory
 
 Since we have configured the enviroment variables globally, you can make your contribution in any folder path you like, however make sure to create an `input/` folder inside:
 
@@ -249,7 +249,7 @@ mkdir input
 
 Then, place json file inside `input/`. Once you have the JSON file from the coordinator placed correctly, you can contribute in two ways:
 
-### Automatic Contribution (Recommended)
+### Step 7.a: Automatic Contribution (Recommended)
 
 If you placed the JSON file in the `input/` folder:
 
@@ -271,7 +271,7 @@ This command will automatically:
 4. 📋 Post your contribution record to GitHub Gist and ceremony repository
 5. 🔗 Generate pull request links for official submission
 
-### Complete Your Contribution Submission
+### Step 8: Complete Your Contribution Submission
 
 **CRITICAL**: After the auto-contribute command completes, you MUST open the generated links to finalize your contribution:
 
@@ -286,7 +286,7 @@ This command will automatically:
 
 **Your contribution is NOT complete until youe pull request is merged!**
 
-### Request the verification
+### Step 9 (Final) Request the verification
 
 Finally, as a last step, ensure that all previous steps have been accomplished succesfully, then you need to request the verification of your contribution by running this command:
 
@@ -296,7 +296,7 @@ brebaje-cli vm verify input/ceremony-urls-pot23_<previosu_contribution_index>.js
 
 Use the json file that the coordinator sent you as an argument.
 
-### Manual Step-by-Step Process
+### Step 7.b: Manual Step-by-Step Process
 
 1. **Download challenge file:**
 
@@ -326,6 +326,12 @@ Use the json file that the coordinator sent you as an argument.
    - Open the pull request URL displayed in the terminal
    - Click "Create pull request" on GitHub to submit officially
    - Share your contribution using the provided Twitter/X link
+
+6. **Request the verification**
+ ```bash
+   brebaje-cli vm verify input/ceremony-urls-pot23_<previosu_contribution_index>.json 
+   ```
+
 
 ## File Structure After Contribution
 
