@@ -196,35 +196,65 @@ Here you can see the permissions needed:
 
 ![Repository permissions](./images/permisions.png)
 
+>⚠️ **Important**: Make sure you copied both tokens somewhere before continue (we'll use them later)
+
 ### Step 3: Configure CLI
 
-Configure all required settings using the config commands:
+# Configuration Setup
+
+Configure all required settings using the config commands.
+
+**a. Initialize Configuration**
+
+First, execute this command to create your configuration:
 
 ```bash
 # Initialize your configuration
 brebaje-cli config new
+```
 
+**b. Set Your Name**
+
+Set the name that you will use to make the contribution:
+
+```bash
 # Set your full name for contribution records
-brebaje-cli config name <your Full Name> # (Make sure to do it with a string "" e.g "John Snow")
+# (Make sure to do it with a string "" e.g "John Snow")
 
-# Set your forked ceremony repository URL
+brebaje-cli config name <Your_Full_Name>
+
+# e.g: brebaje-cli config name "John Snow"
+```
+
+**c. Set Repository URL**
+
+Set the url of the fork you did from the `cardano-ppot` repository:
+
+```bash
+# Replace it with your github username
 brebaje-cli config ceremony-repo https://github.com/<YOUR-USERNAME>/cardano-ppot
+```
 
+**d. Set GitHub Classic Token**
+
+Set your GitHub classic token:
+
+```bash
 # Configure GitHub classic token for gist sharing
-brebaje-cli config gh-token <ghp_your_classic_token_here> 
+brebaje-cli config gh-token <ghp_your_classic_token_here>
+```
 
+**e. Set GitHub Fine-Grained Token**
+
+Set your GitHub fine-grained token:
+
+```bash
 # Configure fine-grained token for repository operations
 brebaje-cli config gh-token-scoped <gh_your_fine_grained_token_here>
 ```
 
 > **📝 Note for existing users**: If you previously used `setup` commands, your local configuration will continue to work. To migrate to the new global configuration system, run: `brebaje-cli config migrate`
 
-Replace the placeholders with your actual values:
-
-- `YOUR-USERNAME`: Your GitHub username
-- `ceremony-repo-name`: The actual ceremony repository name
-- `ghp_your_classic_token_here`: Your GitHub classic token
-- `github_pat_your_fine_grained_token_here`: Your GitHub fine-grained token
 
 ### Step 4: Receive Ceremony URLs from Coordinator
 
