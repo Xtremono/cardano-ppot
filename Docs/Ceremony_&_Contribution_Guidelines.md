@@ -66,6 +66,7 @@ To participate in the trusted setup, you will need a computer **with at least 16
 
 - Node.js (>= 22.17.1)
 - pnpm (>= 9.0.0)
+- snarkjs
 - wget (for downloading ceremony files)
 
 > **If you already have these prerequisites installed, jump to [Installation Instructions](#installation-instructions).**
@@ -89,7 +90,13 @@ npm install -g pnpm
 - macOS: `brew install wget`
 - Windows: [Download from here](https://eternallybored.org/misc/wget/)
 
-## Installation Instructions
+**snarkjs**
+
+```bash
+npm install -g snarkjs@latest
+```
+
+## Step 0: Installation Instructions
 
 ### Clone the Repository
 
@@ -119,10 +126,7 @@ chmod +x install.sh
 
 The installation script will:
 
-- ✅ Check for Node.js and pnpm dependencies
-- ✅ Install missing dependencies if needed
-- ✅ Configure pnpm global bin directory
-- ✅ Install project dependencies
+- ✅ Check software dependencies
 - ✅ Build the CLI
 - ✅ Install the CLI globally
 - ✅ Verify installation success
@@ -146,6 +150,8 @@ Before creating tokens, you must fork the official ceremony repository to your G
 3. Select your GitHub account as the destination
 4. Keep the repository **public** (required for token access)
 5. Note your fork URL: `https://github.com/YOUR-USERNAME/ceremony-repo-name`
+
+![Repository Fork](./images/fork_repo.png)
 
 **Important**: You will use YOUR FORK URL in the setup commands, not the original repository URL.
 
@@ -183,6 +189,12 @@ To submit contribution records to the ceremony repository, you need a **GitHub f
    - ✅ **Pull requests**: Read and write
 7. Click "Generate token"
 8. **Important**: Copy the token immediately (you won't see it again)
+
+![Select Only Repository](./images/only_selected_repository.png)
+
+Here you can see the permissions needed:
+
+![Repository permissions](./images/permisions.png)
 
 ### Step 3: Configure CLI
 
