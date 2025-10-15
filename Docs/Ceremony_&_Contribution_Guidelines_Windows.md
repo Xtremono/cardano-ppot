@@ -64,10 +64,10 @@ To participate in the trusted setup, you will need a computer **with at least 16
 
 ⚠️ **Important**: The installation script will check for and potentially install the following dependencies on your Windows PC:
 
-- Node.js (>= 22.17.1) 
-- pnpm (>= 9.0.0) 
-- snarkjs 
-- wget (for downloading ceremony files) 
+- Node.js (>= 22.17.1)
+- pnpm (>= 9.0.0)
+- snarkjs
+- wget (for downloading ceremony files)
 - curl (for uploading ceremony files)
 - Git for Windows
 
@@ -76,6 +76,59 @@ To participate in the trusted setup, you will need a computer **with at least 16
 ### Prerequisites Setup
 
 First, ensure you have Git for Windows installed. Download from [git-scm.com](https://git-scm.com/download/win) if not already installed.
+
+#### Configuring Git PATH (if needed)
+
+After installing Git for Windows, you may need to add Git to your system PATH if PowerShell cannot find the `git` command. Follow these steps:
+
+**1. Open Environment Variables**
+
+Press the **Start** key (Windows key) and type:
+```
+Edit the system environment variables
+```
+Click on the result to open System Properties.
+
+**2. Access the Environment Variables Editor**
+
+In the window that opens, click the **"Environment Variables..."** button (bottom right).
+
+In the bottom section labeled **"System variables"**, find and select the variable named:
+```
+Path
+```
+
+**3. Add Git Paths**
+
+Click **"Edit"** and then click **"New"** and paste this path:
+```
+C:\Program Files\Git\bin
+```
+
+Click **"Edit"** and then click **"New"** and paste this path:
+```
+C:\Program Files\Git\cmd
+```
+
+Click **"OK"** on all windows to save and close them.
+
+**4. Verify in PowerShell**
+
+1. Close all open PowerShell windows
+2. Open a new PowerShell window (from the Start menu)
+3. Type:
+   ```powershell
+   git --version
+   ```
+
+You should see output like:
+```
+git version 2.46.0.windows.1
+```
+
+If you see the version number, Git is now properly configured!
+
+---
 
 Open **PowerShell as Administrator** or **Git Bash** for the following steps.
 
@@ -355,7 +408,7 @@ This command will automatically:
 Finally, as a last step, ensure that all previous steps have been accomplished successfully, then you need to request the verification of your contribution by running this command:
 
 ```powershell
-brebaje-cli vm verify input\ceremony-urls-pot23_<previous_contribution_index>.json 
+brebaje-cli vm verify input\ceremony-urls-pot23_<previous_contribution_index>.json
 ```
 
 Use the json file that the coordinator sent you as an argument.
@@ -393,7 +446,7 @@ Use the json file that the coordinator sent you as an argument.
 
 6. **Request the verification**
  ```powershell
-   brebaje-cli vm verify input\ceremony-urls-pot23_<previous_contribution_index>.json 
+   brebaje-cli vm verify input\ceremony-urls-pot23_<previous_contribution_index>.json
    ```
 
 
