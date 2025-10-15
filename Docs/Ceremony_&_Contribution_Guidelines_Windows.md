@@ -1,0 +1,541 @@
+# Perpetual powers of tau ceremony on Cardano
+
+## Introduction
+
+**The perpetual powers of tau ceremony**
+
+The perpetual powers of tau (also known as the phase-1 trusted setup) is a cryptographic prelude used to derive the proving and verification keys required by Zero-Knowledge protocols. The trusted setup is important for Cardano because it lays the secure foundations for running applications that rely on Zero-Knowledge proofs. In our journey of developing applications, we found that most robust ceremonies target elliptic curves different from those used by Cardano ( the bls12-381 elliptic curve). This ceremony will construct partial zk-SNARK parameters for circuits up to depth 2^23 using the BLS12-381 elliptic curve construction, which will be practically suitable for almost circuits available out there.
+
+**How does it works?**
+
+This ceremony is a multi-party computation process in which participants collectively generate these keys. Each contributor provides a secret input, ensuring that the final public parameters depend on randomness that no single participant fully controls. These secret inputs are private random values, which must be permanently discarded after use. Because they could compromise the system if leaked, they are often referred to as _toxic waste_. The security of the process relies on the guarantee that at least one contributor discards their toxic waste. If, however, all participants were to collude and retain their secrets, they could potentially subvert the system and produce valid but false Zero-Knowledge proofs. So, as we'll see later, make sure to erase your contribution, it is very important.
+
+**Ceremony Workflow**
+
+The **Perpetual Powers of Tau ceremony** is designed to generate public parameters that no single party controls, ensuring long-term security for Zero-Knowledge applications. The ceremony relies on two key roles: contributors and coordinators. Contributors inject private randomness into the multi-party computation, while coordinators manage the process by organizing contributions and verifying their correctness. The process unfolds as follows:
+
+1. **Coordinator generates the initial challenge file**
+   The ceremony begins with the coordinator producing an initial file, called the _challenge_. This file contains the starting parameters (the first set of powers of tau) that contributors will extend.
+
+2. **Contributors add their secret randomness**
+   Each contributor downloads the challenge file and mixes in their own private randomness. This randomness is combined with all previous contributions to extend the sequence of tau powers. The output is a new file, called the _response_, which includes the contributor's randomness but hides the actual secret value.
+
+   > ⚠️ At this stage, contributors must securely discard their private randomness (known as _toxic waste_). Keeping it would undermine the security of the system.
+
+3. **Coordinator verifies contributions**
+   After receiving each response, the coordinator verifies that the contribution was valid and correctly applied. This ensures that no one introduces malformed or malicious data that could break the setup.
+
+4. **Final beacon application**
+   Once all contributors have participated, the coordinator introduces an additional source of public randomness, called a _beacon_. Typically, this beacon is derived from a publicly verifiable and unpredictable source (such as block hashes, lottery results, or other randomness beacons). This step guarantees that even if every single contributor colluded, the beacon would still inject honest entropy into the system.
+
+5. **Final verification and output**
+   A last round of verification ensures that every contribution and the beacon have been correctly applied. The result is the **final trusted setup parameters** — a common reference string (CRS) that can be safely used by Zero-Knowledge proof systems.
+
+**Ceremony coordination**
+
+- **Ceremony coordination**:
+
+  The coordination of the ceremony will be essential to ensure transparency and broad participation across the Cardano ecosystem.
+
+- **Communication and social media**
+  All announcements and updates will be shared through our official channels on Twitter/X, as well as a public GitHub repository. This will allow anyone interested to follow the progress in real time and access the resources needed to participate.
+
+- **Registration form**
+  A registration form will be published for participants to sign up as contributors. The form will request basic information (nickname, wallet address, technical background, and availability) to help organize the schedule and avoid overlaps.
+
+- **Timeline**
+  The ceremony will officially start on Q4 2025] and run for four weeks, with contribution slots assigned throughout this period. A detailed calendar will be made publicly available.
+
+- **Contributors**
+  Our goal is to reach at least 40 verified contributions. These will include: (a) Regular contributors, who will receive rewards in ADA after the ceremony is finalized; (b) Ad-honorem contributors, who will participate without financial rewards to further increase diversity and strengthen the contributor pool.
+
+- **Rewards test transaction**
+  Before distributing rewards, a test transaction on mainnet will be executed to verify the payment infrastructure and ensure that all participants can receive their compensation smoothly.
+
+Regular reminders will be posted on social media, along with weekly progress updates, to keep the community informed and engaged.
+
+# CLI Installation and Usage (Windows)
+
+## Hardware Requirements
+
+To participate in the trusted setup, you will need a computer **with at least 16 GB of RAM and 10 GB of available storage**. Each challenge file is about 9GB, the contribution on a regular computer should take around 3 to 4 hours to generate the contribution.
+
+## Prerequisites
+
+⚠️ **Important**: The installation script will check for and potentially install the following dependencies on your Windows PC:
+
+- Node.js (>= 22.17.1) 
+- pnpm (>= 9.0.0) 
+- snarkjs 
+- wget (for downloading ceremony files) 
+- curl (for uploading ceremony files)
+- Git for Windows
+
+## Step 0: Installation Instructions
+
+### Prerequisites Setup
+
+First, ensure you have Git for Windows installed. Download from [git-scm.com](https://git-scm.com/download/win) if not already installed.
+
+Open **PowerShell as Administrator** or **Git Bash** for the following steps.
+
+### Clone the Repository
+
+```powershell
+git clone https://github.com/p0tion-tools/brebaje.git
+cd brebaje
+```
+
+### Checkout on the CLI branch
+
+```powershell
+git checkout feat/CLI
+```
+
+### Navigate to the CLI Folder
+
+```powershell
+cd apps\cli
+```
+
+### Run Installation Script
+
+For **PowerShell**:
+```powershell
+.\install.ps1
+```
+
+For **Git Bash**:
+```bash
+./install.sh
+```
+
+The installation script will:
+
+- ✅ Check software dependencies
+- ✅ Build the CLI
+- ✅ Install the CLI globally
+- ✅ Verify installation success
+
+### Verify Installation
+
+After successful installation, you should see the CLI help output. You can also test it manually:
+
+```powershell
+brebaje-cli --help
+```
+
+> **If brebaje-cli is installed successfully, jump to [Configuration for Contribution](#configuration-for-contribution).**
+
+### Manual Installation (if needed)
+
+**Node.js:**
+
+- Download from [nodejs.org](https://nodejs.org/) (choose LTS version)
+- Or use Chocolatey: `choco install nodejs` (if Chocolatey is installed)
+- Or use winget: `winget install OpenJS.NodeJS`
+
+**pnpm:**
+
+```powershell
+npm install -g pnpm
+```
+
+**wget:**
+
+- Windows: [Download from here](https://eternallybored.org/misc/wget/)
+- Or use Chocolatey: `choco install wget`
+- Or use winget: `winget install GNU.Wget`
+
+**curl:**
+
+- Windows: [Download from here](https://curl.se/windows/)
+- Or use Chocolatey: `choco install curl`
+- Usually pre-installed on Windows 10/11
+
+**snarkjs**
+
+```powershell
+npm install -g snarkjs@latest
+```
+
+## Configuration for Contribution
+
+### Step 1: Fork the Ceremony Repository
+
+Before creating tokens, you must fork the official ceremony repository to your GitHub account:
+
+1. Go to the [official ceremony repository](https://github.com/p0tion-tools/cardano-ppot)
+2. Click the **"Fork"** button in the top-right corner
+3. Select your GitHub account as the destination
+4. Keep the repository **public** (required for token access)
+5. Note your fork URL: `https://github.com/YOUR-USERNAME/cardano-ppot`
+
+![Repository Fork](./images/fork_repo.png)
+
+**Important**: You will use YOUR FORK URL in the setup commands, not the original repository URL.
+
+### Step 2: Create GitHub Tokens
+
+The CLI requires **two different GitHub tokens** for complete functionality:
+
+#### Create Classic Token (For Gist Sharing)
+
+To post contribution records publicly, you need a **GitHub classic personal access token**:
+
+![GitHub Token Creation](./images/github-token-creation.jpg)
+
+1. Go to [GitHub Settings > Developer settings > Personal access tokens > Tokens (classic)](https://github.com/settings/tokens)
+2. Click "Generate new token (classic)" - **Make sure to select "classic" not "fine-grained"**
+3. Give it a descriptive name (e.g., "Brebaje CLI - Powers of Tau")
+4. Select the following permission:
+   - ✅ **gist** (Create gists)
+5. Click "Generate token"
+6. **Important**: Copy the token immediately (you won't see it again)
+
+![GitHub Token Permissions](./images/github-token-permissions.jpg)
+
+#### Create Fine-grained Token (For Repository Operations)
+
+To submit contribution records to the ceremony repository, you need a **GitHub fine-grained personal access token**:
+
+1. Go to [GitHub Settings > Developer settings > Personal access tokens > Fine-grained tokens](https://github.com/settings/tokens?type=beta)
+2. Click "Generate new token"
+3. Give it a descriptive name (e.g., "Brebaje CLI - Repository Access")
+4. Set expiration (default is okay)
+5. **Resource access**: Select "Only selected repositories" and choose YOUR FORKED ceremony repository
+6. **Repository permissions**: Select the following:
+   - ✅ **Contents**: Read and write
+   - ✅ **Pull requests**: Read and write
+7. Click "Generate token"
+8. **Important**: Copy the token immediately (you won't see it again)
+
+![Select Only Repository](./images/only_selected_repository.png)
+
+Here you can see the permissions needed:
+
+![Repository permissions](./images/permisions.png)
+
+>⚠️ **Important**: Make sure you copied both tokens somewhere before continue (we'll use them later)
+
+## Configuration of Brebaje-cli
+
+### Step 3: Configure CLI
+
+Configure all required settings using the config commands.
+
+**a. Initialize Configuration**
+
+First, execute this command to create your configuration:
+
+```powershell
+# Initialize your configuration
+brebaje-cli config new
+```
+
+**b. Set Your Name**
+
+Set the name that you will use to make the contribution:
+
+```powershell
+# Set your full name for contribution records
+# (Make sure to do it with a string "" e.g "John Snow")
+
+brebaje-cli config name <Your_Full_Name>
+
+# e.g: brebaje-cli config name "John Snow"
+```
+
+**c. Set Repository URL**
+
+Set the url of the fork you did from the `cardano-ppot` repository:
+
+```powershell
+# Replace it with your github username
+brebaje-cli config ceremony-repo https://github.com/<YOUR-USERNAME>/cardano-ppot
+```
+
+**d. Set GitHub Classic Token**
+
+Set your GitHub classic token:
+
+```powershell
+# Configure GitHub classic token for gist sharing
+brebaje-cli config gh-token <ghp_your_classic_token_here>
+```
+
+**e. Set GitHub Fine-Grained Token**
+
+Set your GitHub fine-grained token:
+
+```powershell
+# Configure fine-grained token for repository operations
+brebaje-cli config gh-token-scoped <gh_your_fine_grained_token_here>
+```
+
+> **📝 Note for existing users**: If you previously used `setup` commands, your local configuration will continue to work. To migrate to the new global configuration system, run: `brebaje-cli config migrate`
+
+
+### Step 4: Receive Ceremony URLs from Coordinator
+
+At this stage, the ceremony coordinator will provide you with a JSON file containing the download and upload URLs. This file will look like:
+
+```json
+{
+  "download_info": {
+    "field_name": "pot12_0005.ptau",
+    "s3_key_field": "Cardano-PPOT/pot12_0005.ptau",
+    "expiration": "2025-10-02T19:59:05.861Z",
+    "download_url": "https://s3.amazonaws.com/bucket/challenge.ptau?..."
+  },
+  "upload_info": {
+    "field_name": "pot12_0006.ptau",
+    "s3_key_field": "Cardano-PPOT/pot12_0006.ptau",
+    "expiration": "2025-10-01T20:59:05.861Z",
+    "upload_url": "https://s3.amazonaws.com/bucket/contribution.ptau?..."
+  }
+}
+```
+
+**Keep this file accessible with a known path, we'll use it in a second (see instructions below)**
+
+### Step 5: Create the input directory
+
+Since we have configured the environment variables globally, you can make your contribution in any folder path you like, however make sure to create an `input\` folder inside:
+
+```powershell
+mkdir input
+```
+
+Then, place json file inside `input\`.
+
+## Contributing to a Ceremony
+
+ Once you have the JSON file from the coordinator placed correctly, you can contribute in two ways:
+
+### Step 6.a: Automatic Contribution (Recommended)
+
+If you placed the JSON file in the `input\` folder:
+
+```powershell
+brebaje-cli ppot auto-contribute
+```
+
+If the JSON file is elsewhere:
+
+```powershell
+brebaje-cli ppot auto-contribute C:\path\to\ceremony-urls.json
+```
+
+This command will automatically:
+
+1. 📥 Download the challenge file
+2. 🔧 Make your contribution
+3. 📤 Upload your contribution
+4. 📋 Post your contribution record to GitHub Gist and ceremony repository
+5. 🔗 Generate pull request links for official submission
+
+### Step 7: Complete Your Contribution Submission
+
+**CRITICAL**: After the auto-contribute command completes, you MUST open the generated links to finalize your contribution:
+
+1. **Open the Pull Request Link**: The CLI will display a pull request URL like:
+   ```
+   🔄 Create pull request:
+   https://github.com/original-ceremony-repo/compare/main...your-username:main?expand=1&title=...
+   ```
+2. **Click "Create pull request"** on the GitHub page to officially submit your contribution to the ceremony
+
+3. **Share on Social Media**: Click the generated Twitter/X link to share your participation with the Cardano community
+
+**Your contribution is NOT complete until youe pull request is merged!**
+
+### Step 8 (Final) Request the verification
+
+Finally, as a last step, ensure that all previous steps have been accomplished successfully, then you need to request the verification of your contribution by running this command:
+
+```powershell
+brebaje-cli vm verify input\ceremony-urls-pot23_<previous_contribution_index>.json 
+```
+
+Use the json file that the coordinator sent you as an argument.
+
+### Step 6.b: Manual Step-by-Step Process
+
+1. **Download challenge file:**
+
+   ```powershell
+   brebaje-cli ppot download "https://download-url-from-json..."
+   ```
+
+2. **Make contribution:**
+
+   ```powershell
+   brebaje-cli ppot contribute
+   ```
+
+3. **Upload contribution:**
+
+   ```powershell
+   brebaje-cli ppot upload "https://upload-url-from-json..."
+   ```
+
+4. **Post contribution record:**
+
+   ```powershell
+   brebaje-cli ppot post-record
+   ```
+
+5. **Complete submission by opening generated links:**
+   - Open the pull request URL displayed in the terminal
+   - Click "Create pull request" on GitHub to submit officially
+   - Share your contribution using the provided Twitter/X link
+
+6. **Request the verification**
+ ```powershell
+   brebaje-cli vm verify input\ceremony-urls-pot23_<previous_contribution_index>.json 
+   ```
+
+
+## File Structure After Contribution
+
+After contributing, you'll have:
+
+```
+apps\cli\
+├── input\               # Challenge files downloaded here
+│   └── pot12_0005.ptau
+├── output\              # Your contributions saved here
+│   ├── pot12_0006.ptau
+│   └── pot12_0006_record.txt
+└── ceremony-urls.json   # URLs file from coordinator
+```
+
+**Configuration location:**
+
+- Global config: `%USERPROFILE%\.brebaje\.env` (recommended, works from any directory)
+- Local config: `apps\cli\.env` (development only, keep private!)
+
+**What gets submitted to GitHub:**
+
+- **Gist**: Public sharing link with your contribution record
+- **Repository**: Official folder in your forked ceremony repo containing:
+  - `pot12_0006_record.txt` - Your contribution record
+  - `response_resume.md` - Contribution metadata and hardware info
+- **Pull Request**: Official submission from your fork to the original ceremony repository
+
+## Troubleshooting
+
+### CLI Not Found in PATH
+
+If you see "command not found" after installation:
+
+**For PowerShell:**
+```powershell
+# Add to PowerShell profile
+$env:PATH += ";$env:USERPROFILE\.local\bin"
+```
+
+**For Command Prompt:**
+```cmd
+# Add to system PATH environment variable
+setx PATH "%PATH%;%USERPROFILE%\.local\bin"
+```
+
+### Permission Issues
+
+If you encounter permission errors, run PowerShell as Administrator:
+
+```powershell
+# Right-click PowerShell and select "Run as Administrator"
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+### pnpm Configuration Issues
+
+If pnpm global commands don't work:
+
+```powershell
+pnpm config set global-bin-dir "$env:USERPROFILE\.local\bin"
+mkdir "$env:USERPROFILE\.local\bin" -Force
+```
+
+## Security Notes
+
+- 🔒 Keep your GitHub token secure and private
+- 🗑️ The `input\` folder can be deleted after contribution
+- 💾 Keep the `output\` folder as proof of your contribution
+- ⏰ URLs in the JSON file have expiration times
+
+## Getting Help
+
+For additional help and available commands:
+
+```powershell
+brebaje-cli --help
+brebaje-cli ppot --help
+```
+
+## Support
+
+If you encounter issues:
+
+1. Check this documentation first
+2. Verify all prerequisites are installed
+3. Contact the ceremony coordinator
+4. Report bugs at the project repository
+
+---
+
+**Happy contributing to the Powers of Tau ceremony! 🎉**
+
+# What's Next?
+
+We deeply appreciate your participation in this ceremony — your contribution plays an important role in strengthening the Cardano ecosystem! <3
+
+The final results of the ceremony will be published in our official GitHub repository. There, we will also share the list of contributors and all relevant data related to the process.
+
+## Rewards
+
+Rewards will be distributed once the ceremony is completed and has passed approval from the Catalyst team. After that, we will announce the official date for rewards distribution.
+
+---
+
+# Appendix
+
+**Look for a good entropy source**
+
+To make the contribution you must make a random value that is hard to replicate. Now there are a couple random source you can choose:
+
+1. **Randomly typing**
+
+The must obvious is to type a random string of characters using your keyboard and creativity.
+
+2. **Using Cardano blocks**
+
+You can add the Cardano block hashes as an input. You can check the hashes of the blocks on a Cardano explorer like [cardano scan](https://cardanoscan.io/blocks)
+
+3. **Using Windows CryptGenRandom**
+
+To generate random values on Windows, you can use PowerShell:
+
+```powershell
+# Generate random bytes using Windows crypto API
+[System.Security.Cryptography.RNGCryptoServiceProvider]::new().GetBytes(256) | ForEach-Object { $_.ToString("x2") } | Join-String
+```
+
+This will display a long string of random hexadecimals generated by the Windows cryptographic API.
+
+## FAQ
+
+- **What will be the benefit for Cardano from this ceremony?**
+
+This ceremony enables the secure operation of applications that rely on Zero-Knowledge proofs. Without completing this setup, such applications would face weaker security guarantees, limiting their robustness and trustworthiness.
+
+- **What happens if I don't discard my toxic waste?**
+
+In the context of a trusted setup, **toxic waste** refers to the private randomness that each contributor generates when making their contribution. This value must be permanently discarded after your participation. Failing to do so can compromise the security of the entire ceremony. Malicious users could create valid but false proof, breaking the security guarantees of a Zero-Knowledge protocol.
+
+- **Why is the ceremony is not fully permissionless?**
+
+We decided to run this ceremony in a more **permissioned** way because previous open ceremonies have faced several challenges such as spam and sybil attacks. Implement a permissionless registration system is a complex task that doesn't provide sufficient guarantees to solve these problem. In sum, our rationale was to make the process simpler and rely on trusted actors of the Cardano ecosystem such as stake pool operators, developers and other important figures; although permissioned, the ceremony remains transparent: every valid contribution will be publicly auditable, ensuring that the final output is trustworthy.
