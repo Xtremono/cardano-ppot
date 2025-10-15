@@ -64,37 +64,11 @@ To participate in the trusted setup, you will need a computer **with at least 16
 
 ⚠️ **Important**: The installation script will check for and potentially install the following dependencies on your local PC:
 
-- Node.js (>= 22.17.1)
-- pnpm (>= 9.0.0)
-- snarkjs
-- wget (for downloading ceremony files)
-
-> **If you already have these prerequisites installed, jump to [Installation Instructions](#installation-instructions).**
-
-### Manual Installation (if needed)
-
-**Node.js:**
-
-- Download from [nodejs.org](https://nodejs.org/) (choose LTS version)
-- Or use package manager: `sudo apt install nodejs` (Ubuntu) / `brew install node` (macOS)
-
-**pnpm:**
-
-```bash
-npm install -g pnpm
-```
-
-**wget:**
-
-- Ubuntu/Debian: `sudo apt-get install wget`
-- macOS: `brew install wget`
-- Windows: [Download from here](https://eternallybored.org/misc/wget/)
-
-**snarkjs**
-
-```bash
-npm install -g snarkjs@latest
-```
+- Node.js (>= 22.17.1) 
+- pnpm (>= 9.0.0) 
+- snarkjs 
+- wget (for downloading ceremony files) 
+- curl (for uploading ceremony files) 
 
 ## Step 0: Installation Instructions
 
@@ -137,6 +111,39 @@ After successful installation, you should see the CLI help output. You can also 
 
 ```bash
 brebaje-cli --help
+```
+
+> **If brebaje-cli is installed successfully, jump to [Configuration for Contribution](#configuration-for-contribution).**
+
+### Manual Installation (if needed)
+
+**Node.js:**
+
+- Download from [nodejs.org](https://nodejs.org/) (choose LTS version)
+- Or use package manager: `sudo apt install nodejs` (Ubuntu) / `brew install node` (macOS)
+
+**pnpm:**
+
+```bash
+npm install -g pnpm
+```
+
+**wget:**
+
+- Ubuntu/Debian: `sudo apt-get install wget`
+- macOS: `brew install wget`
+- Windows: [Download from here](https://eternallybored.org/misc/wget/)
+
+**curl:**
+
+- Ubuntu/Debian: `sudo apt-get install curl`
+- macOS: `brew install curl` (usually pre-installed)
+- Windows: [Download from here](https://curl.se/windows/)
+
+**snarkjs**
+
+```bash
+npm install -g snarkjs@latest
 ```
 
 ## Configuration for Contribution
