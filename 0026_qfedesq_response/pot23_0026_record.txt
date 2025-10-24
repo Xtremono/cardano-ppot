@@ -1,0 +1,17 @@
+Contribution Record
+==================
+
+File: pot23_0026.ptau
+Size: 4831893764 bytes (4608.05 MB)
+Ceremony Power: 23
+Contribution Index: 26
+Previous File: pot23_0025.ptau
+Generated: 2025-10-24T18:26:36.096Z
+Contributor: Federico Ledesma
+
+Contribution Log:
+================
+Contribution completed successfully for pot23_0026.ptau
+
+This record contains the output from the snarkjs contribution command
+including cryptographic hashes for verification purposes.
